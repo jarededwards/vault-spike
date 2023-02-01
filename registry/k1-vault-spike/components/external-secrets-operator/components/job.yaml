@@ -4,13 +4,13 @@ metadata:
   name: eso-cluster-secret-store-wait
   namespace: external-secrets-operator
   annotations:
-    argocd.argoproj.io/sync-wave: "10"
+    argocd.argoproj.io/sync-wave: "20"
 spec:
   template:
     spec:
       serviceAccountName: external-secrets-store-sa
       containers:
-      - name: unseal-vault
+      - name: ready-check
         image: public.ecr.aws/bitnami/kubectl:1.22
         command:
         - /bin/sh
@@ -22,12 +22,5 @@ spec:
             sleep 5;
             CLUSTER_STORE_STATUS=$(kubectl get clustersecretstore/vault-secrets-backend -o jsonpath="{.status.conditions[0].reason}");
           done
-          while ! kubectl get secret vault-configured --namespace vault; do echo "waiting for vault to terraform to apply, sleeping 5 seconds"; sleep 5; done
-        volumeMounts:
-        - mountPath: /tmp
-          name: tmp-dir
       restartPolicy: Never
-      volumes:
-      - name: tmp-dir
-        emptyDir: {}
   backoffLimit: 2

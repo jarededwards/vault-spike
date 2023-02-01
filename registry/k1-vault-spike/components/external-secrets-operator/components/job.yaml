@@ -16,6 +16,6 @@ spec:
         - /bin/sh
         - -c
         - |
-          while [ "${CLUSTER_STORE_STATUS}" != "Valid" ] do echo "waiting for ClusterSecretStore to be available, current: ${CLUSTER_STORE_STATUS}"; sleep 5; CLUSTER_STORE_STATUS=$(kubectl get clustersecretstore/vault-secrets-backend -o jsonpath="{.status.conditions[0].reason}"); done
+          while [ "${CLUSTER_STORE_STATUS}" != "Valid" ]; do echo "waiting for ClusterSecretStore to be available, current: ${CLUSTER_STORE_STATUS}"; sleep 5; CLUSTER_STORE_STATUS=$(kubectl get clustersecretstore/vault-secrets-backend -o jsonpath="{.status.conditions[0].reason}"); done
       restartPolicy: Never
   backoffLimit: 2

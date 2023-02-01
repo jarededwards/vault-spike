@@ -1,21 +1,22 @@
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: eso-cluster-secret-store-wait
-  namespace: external-secrets-operator
-  annotations:
-    argocd.argoproj.io/sync-wave: "20"
-spec:
-  template:
-    spec:
-      serviceAccountName: external-secrets-store-sa
-      containers:
-      - name: ready-check
-        image: public.ecr.aws/bitnami/kubectl:1.22
-        command:
-        - /bin/sh
-        - -c
-        - |
-          while [ "${CLUSTER_STORE_STATUS}" != "Valid" ]; do echo "waiting for ClusterSecretStore to be available, current: ${CLUSTER_STORE_STATUS}"; sleep 5; CLUSTER_STORE_STATUS=$(kubectl get clustersecretstore/vault-secrets-backend -o jsonpath="{.status.conditions[0].reason}"); done
-      restartPolicy: Never
-  backoffLimit: 2
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: eso-cluster-secret-store-wait
+#   namespace: external-secrets-operator
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "20"
+# spec:
+#   template:
+#     spec:
+#       serviceAccountName: external-secrets-store-sa
+#       containers:
+#       - name: ready-check
+#         image: ubuntu:latest
+#         command:
+#         - /bin/sh
+#         - -c
+#         - |
+#           sleep 15;
+#       restartPolicy: Never
+#   backoffLimit: 2
+#

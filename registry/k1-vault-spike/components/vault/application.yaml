@@ -16,6 +16,9 @@ spec:
           affinity: ""
           ha:
             enabled: true
+          dev:
+            enabled: true
+            devRootToken: "k1_local_vault_token"
           image:
             config: |
               ui = true

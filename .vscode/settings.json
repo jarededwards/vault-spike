@@ -1,0 +1,38 @@
+{
+    "workbench.colorCustomizations": {
+      "titleBar.inactiveBackground": "#56FDE6",
+      "titleBar.activeBackground": "#56FDE6",
+    },
+    "cSpell.words": [
+      "apimachinery",
+      "argocd",
+      "Argocd",
+      "chartmuseum",
+      "Chartmuseum",
+      "civo",
+      "Civo",
+      "civogo",
+      "clientcmd",
+      "clientset",
+      "configurerd",
+      "detokenize",
+      "Detokenize",
+      "detokenized",
+      "gitops",
+      "Gitops",
+      "giturl",
+      "kubeconfig",
+      "kubefirst",
+      "Kubefirst",
+      "metav",
+      "mgmt",
+      "Mgmt",
+      "minio",
+      "Minio",
+      "Msgf",
+      "publickeys",
+      "respository",
+      "structs",
+      "zerolog"
+    ]
+  }

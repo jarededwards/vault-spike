@@ -1,0 +1,22 @@
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: eso-cluster-secret-store-wait
+#   namespace: external-secrets-operator
+#   annotations:
+#     argocd.argoproj.io/sync-wave: "20"
+# spec:
+#   template:
+#     spec:
+#       serviceAccountName: external-secrets-store-sa
+#       containers:
+#       - name: ready-check
+#         image: ubuntu:latest
+#         command:
+#         - /bin/sh
+#         - -c
+#         - |
+#           sleep 15;
+#       restartPolicy: Never
+#   backoffLimit: 2
+#

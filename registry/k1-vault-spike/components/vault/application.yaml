@@ -17,6 +17,7 @@ spec:
           ha:
             enabled: true
             config: |
+              storage "inmem" {}
               ui = true
               listener "tcp" {
                 tls_disable = 1

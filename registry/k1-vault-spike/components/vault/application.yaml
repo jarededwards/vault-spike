@@ -23,28 +23,27 @@ spec:
           ha:
             enabled: true
             replicas: 3
-            config: |
-              ui = true
-              listener "tcp" {
-                tls_disable     = 1
-                address         = "[::]:8200"
-                cluster_address = "[::]:8201"
-              }
-              ha_storage "s3" {
-                bucket              = "scott-vault-spike-test-vault-data"
-                endpoint            = "https://objectstore.nyc1.civo.com"
-                region              = "NYC1"
-                s3_force_path_style = true
-                path                = "/vault-data"
-              }
-              storage "s3" {
-                bucket              = "scott-vault-spike-test-vault-data"
-                endpoint            = "https://objectstore.nyc1.civo.com"
-                region              = "NYC1"
-                s3_force_path_style = true
-                path                = "/vault-backend"
-              }
-              service_registration "kubernetes" {}
+            raft:    
+              enabled: true
+              setNodeId: true
+              config: |
+                ui = true
+                listener "tcp" {
+                  tls_disable     = 1
+                  address         = "[::]:8200"
+                  cluster_address = "[::]:8201"
+                }
+                ha_storage "raft" {
+                  path = "/vault/data"
+                }
+                storage "s3" {
+                  bucket              = "scott-vault-spike-test-vault-data"
+                  endpoint            = "https://objectstore.nyc1.civo.com"
+                  region              = "NYC1"
+                  s3_force_path_style = true
+                  path                = "/vault-backend"
+                }
+                service_registration "kubernetes" {}
     chart: vault
   destination:
     server: https://kubernetes.default.svc

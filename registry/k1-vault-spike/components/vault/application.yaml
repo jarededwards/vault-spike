@@ -17,10 +17,7 @@ spec:
           ha:
             enabled: true
             config: |
-              storage "raft" {
-                ha_enabled = "true"
-                path = "/path/to/raft/data"
-              }
+              storage "raft" {}
               ui = true
               listener "tcp" {
                 tls_disable = 1

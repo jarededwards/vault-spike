@@ -17,7 +17,10 @@ spec:
           ha:
             enabled: true
             config: |
-              storage "inmem" {}
+              storage "raft" {
+                ha_enabled = "true"
+                path = "/path/to/raft/data"
+              }
               ui = true
               listener "tcp" {
                 tls_disable = 1

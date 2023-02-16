@@ -37,9 +37,11 @@ spec:
                   path = "/vault/data"
                 }
                 storage "s3" {
-                  bucket    = "scott-vault-spike-test-vault-data"
-                  endpoint  = "objectstore.nyc1.civo.com"
-                  region    = "NYC1"
+                  bucket              = "scott-vault-spike-test-vault-data"
+                  endpoint            = "https://objectstore.nyc1.civo.com"
+                  region              = "NYC1"
+                  s3_force_path_style = true
+                  path                = "/vault-backend"
                 }
                 service_registration "kubernetes" {}
     chart: vault

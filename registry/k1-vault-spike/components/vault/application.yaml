@@ -16,7 +16,6 @@ spec:
           affinity: ""
           ha:
             enabled: true
-          image:
             config: |
               ui = true
               listener "tcp" {

@@ -13,6 +13,13 @@ spec:
     helm:
       values: |-
         server:
+          extraSecretEnvironmentVars:
+            - envName: AWS_ACCESS_KEY_ID
+              secretName: vault-s3-auth
+              secretKey: AWS_ACCESS_KEY_ID
+            - envName: AWS_SECRET_ACCESS_KEY
+              secretName: vault-s3-auth
+              secretKey: AWS_SECRET_ACCESS_KEY
           ha:
             enabled: true
             replicas: 3
@@ -26,8 +33,11 @@ spec:
                   address = "[::]:8200"
                   cluster_address = "[::]:8201"
                 }
-                storage "raft" {
+                ha_storage "raft" {
                   path = "/vault/data"
+                }
+                storage "s3" {
+                  bucket     = "scott-vault-spike-test-vault-data"
                 }
                 service_registration "kubernetes" {}
     chart: vault

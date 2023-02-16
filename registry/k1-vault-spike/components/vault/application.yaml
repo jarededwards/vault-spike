@@ -13,6 +13,13 @@ spec:
     helm:
       values: |-
         server:
+          extraSecretEnvironmentVars:
+            - envName: AWS_ACCESS_KEY_ID
+              secretName: vault-s3-auth
+              secretKey: AWS_ACCESS_KEY_ID
+            - envName: AWS_SECRET_ACCESS_KEY
+              secretName: vault-s3-auth
+              secretKey: AWS_SECRET_ACCESS_KEY
           ha:
             enabled: true
             replicas: 3
@@ -30,8 +37,6 @@ spec:
                   path = "/vault/data"
                 }
                 storage "s3" {
-                  access_key = "TER31ZE4LHHCNXZZBL19"
-                  secret_key = "asfaf$Gasvgaafgvasagvassga33"
                   bucket              = "scott-vault-spike-test-vault-data"
                   endpoint            = "https://objectstore.nyc1.civo.com"
                   region              = "NYC1"

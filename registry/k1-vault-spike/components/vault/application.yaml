@@ -39,7 +39,7 @@ spec:
                 storage "s3" {
                   bucket    = "scott-vault-spike-test-vault-data"
                   endpoint  = "objectstore.nyc1.civo.com"
-                  region    = "NYC"
+                  region    = "NYC1"
                 }
                 service_registration "kubernetes" {}
     chart: vault

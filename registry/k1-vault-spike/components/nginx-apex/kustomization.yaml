@@ -5,5 +5,5 @@ namespace: argocd
 # To upgrade ArgoCD, increment the version here
 # https://github.com/argoproj/argo-cd/tags
 resources:
-  - github.com:kubefirst/manifests.git/nginx-apex?ref=add-nginx
+  - github.com:kubefirst/manifests.git/nginx/apex?ref=add-nginx
   - ingress.yaml

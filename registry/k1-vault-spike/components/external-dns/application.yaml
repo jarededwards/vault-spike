@@ -4,7 +4,7 @@ metadata:
   name: external-dns
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: '20'
+    argocd.argoproj.io/sync-wave: '0'
 spec:
   project: default
   source:
@@ -13,9 +13,6 @@ spec:
     helm:
       releaseName: external-dns
       values: |
-        image:
-          repository: registry.k8s.io/external-dns/external-dns
-          tag: "v0.13.2"
         serviceAccount:
           create: true
           name: external-dns
@@ -23,7 +20,7 @@ spec:
         sources:
         - ingress
         domainFilters:
-        - <DOMAIN_NAME>
+        - kubesecond.de
         env:
         - name: CIVO_TOKEN
           valueFrom:

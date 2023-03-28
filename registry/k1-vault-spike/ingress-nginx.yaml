@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cert-manager-components
+  name: ingress-nginx-components
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "20"
@@ -9,11 +9,11 @@ spec:
   project: default
   source:
     repoURL: https://github.com/jarededwards/vault-spike.git
-    path: registry/k1-vault-spike/components/cert-manager
+    path: registry/k1-vault-spike/components/ingress-nginx
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: cert-manager
+    namespace: ingress-nginx
   syncPolicy:
     automated:
       prune: true

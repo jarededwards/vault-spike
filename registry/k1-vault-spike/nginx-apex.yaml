@@ -15,7 +15,7 @@ spec:
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc
-    namespace: nginx-apex
+    namespace: default
   syncPolicy:
     automated:
       prune: true

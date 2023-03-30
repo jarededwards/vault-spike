@@ -3,7 +3,7 @@ kind: Application
 metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
-  name: wave-3
+  name: wave-3-components
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: '0'

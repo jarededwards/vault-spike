@@ -11,7 +11,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/jarededwards/vault-spike.git
-    path: registry/argocd-sync/wave-2
+    path: registry/argocd-sync/components/wave-2
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc

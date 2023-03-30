@@ -6,6 +6,7 @@ metadata:
   name: wait-external-dns
   namespace: argocd
   annotations:
+    argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/sync-wave: '21'
 spec:
   project: default

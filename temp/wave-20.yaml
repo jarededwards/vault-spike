@@ -3,15 +3,15 @@ kind: Application
 metadata:
   finalizers:
     - resources-finalizer.argocd.argoproj.io
-  name: wave-1-components
+  name: wave-2-components
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: '0'
+    argocd.argoproj.io/sync-wave: '20'
 spec:
   project: default
   source:
     repoURL: https://github.com/jarededwards/vault-spike.git
-    path: registry/argocd-sync/components/wave-1
+    path: registry/argocd-sync/components/wave-20
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc

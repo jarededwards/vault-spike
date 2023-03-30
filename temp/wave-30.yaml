@@ -6,12 +6,12 @@ metadata:
   name: wave-3-components
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: '0'
+    argocd.argoproj.io/sync-wave: '30'
 spec:
   project: default
   source:
     repoURL: https://github.com/jarededwards/vault-spike.git
-    path: registry/argocd-sync/components/wave-3
+    path: registry/argocd-sync/components/wave-30
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc

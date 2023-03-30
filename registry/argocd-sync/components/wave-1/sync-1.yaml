@@ -11,7 +11,7 @@ spec:
       serviceAccountName: argocd-server
       containers:
       - name: atlantis-wait
-        image: 'public.ecr.aws/lemonpi/wardsco/sleep:latest'
+        image: sverrirab/sleep
         command:
         - /bin/sh
         - -c

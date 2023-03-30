@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: syncsync-wave-40
+  name: sync-wave-40
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "40"

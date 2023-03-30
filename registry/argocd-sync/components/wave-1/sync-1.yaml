@@ -11,12 +11,12 @@ spec:
       serviceAccountName: argocd-server
       containers:
       - name: atlantis-wait
-        image: public.ecr.aws/lemonpi/wardsco/sleep:latest
+        image: 'public.ecr.aws/lemonpi/wardsco/sleep:latest'
         command:
         - /bin/sh
         - -c
         - |
-          echo "sync wave 10"
+          echo sync wave 10
           sleep 999
       restartPolicy: Never
   backoffLimit: 1

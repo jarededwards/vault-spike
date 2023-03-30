@@ -28,29 +28,3 @@ spec:
         duration: 5s
         maxDuration: 5m0s
         factor: 2
----
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: wait-external-dns-application
-  namespace: argocd
-  annotations:
-    argocd.argoproj.io/sync-wave: '20'
-    argocd.argoproj.io/hook: PostSync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
-spec:
-  template:
-    spec:
-      serviceAccountName: argocd-server
-      containers:
-      - name: wait-ingress-nginx
-        image: argoproj/argocd:v2.6.4
-        command:
-        - /bin/sh
-        - -c
-        - |
-          argocd login argocd.argocd-server.svc.cluster.local --core
-          argocd app wait ingress-nginx
-          argocd app wait ingress-nginx-components
-      restartPolicy: Never
-  backoffLimit: 1

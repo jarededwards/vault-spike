@@ -9,6 +9,8 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   rules:
     - host: kubesecond.de

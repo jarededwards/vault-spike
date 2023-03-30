@@ -1,13 +1,13 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
   name: wait-ingress-nginx
   namespace: argocd
   annotations:
     argocd.argoproj.io/hook: PostSync
-    argocd.argoproj.io/sync-wave: '11'
+    argocd.argoproj.io/sync-wave: '10'
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:

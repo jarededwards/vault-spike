@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: sync-wave-10
+  name: sync-1-wave-10
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "1"
@@ -16,7 +16,7 @@ spec:
         - /bin/sh
         - -c
         - |
-          echo sync wave 10
+          echo sync wave 1
           sleep 1
       restartPolicy: Never
   backoffLimit: 1

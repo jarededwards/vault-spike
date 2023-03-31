@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: minio-pv-volume-XX
+  name: minio-pv-volume-dont-use
   namespace: minio
   labels:
     type: local
@@ -17,7 +17,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: minio-pv-claim-XX
+  name: minio-pv-claim-dont-use
   namespace: minio
 spec:
   storageClassName: manual

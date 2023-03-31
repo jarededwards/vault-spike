@@ -1,28 +1,24 @@
-apiVersion: argoproj.io/v1alpha1
-kind: Application
+apiVersion: batch/v1
+kind: Job
 metadata:
-  name: wait-ingress-nginx
-  namespace: argocd
+  name: kubernetes-toolkit
   annotations:
     argocd.argoproj.io/sync-wave: '20'
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
-  project: default
-  source:
-    repoURL: 'https://github.com/kubefirst/manifests'
-    path: kubernetes-toolkit/argo-wait/overlays/ingress-nginx
-    targetRevision: feat-kubernetes-toolkit
-  destination:
-    server: 'https://kubernetes.default.svc'
-    namespace: ingress-nginx
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-    retry:
-      limit: 5
-      backoff:
-        duration: 5s
-        maxDuration: 5m0s
-        factor: 2
+  template:
+    spec:
+      serviceAccountName: kubernetes-toolkit
+      containers:
+        - name: kubernetes-toolkit
+          image: kubefirst/kubernetes-toolkit
+          imagePullPolicy: Always
+          args:
+            [
+              'wait-for',
+              'deployment',
+              '--namespace',
+              'ingress-nginx',
+              '--label',
+              'app.kubernetes.io/name=ingress-nginx',
+            ]
+      restartPolicy: OnFailure

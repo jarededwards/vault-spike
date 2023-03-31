@@ -17,6 +17,6 @@ spec:
         - -c
         - |
           echo sync wave 100
-          sleep 999
+          sleep 30
       restartPolicy: Never
   backoffLimit: 1

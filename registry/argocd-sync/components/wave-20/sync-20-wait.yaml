@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: wait-external-dns-deployments
+  name: wait-ingress-nginx
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: '20'
@@ -11,11 +11,11 @@ spec:
   project: default
   source:
     repoURL: 'https://github.com/kubefirst/manifests'
-    path: kubernetes-toolkit/argo-wait/overlays/external-dns
+    path: kubernetes-toolkit/argo-wait/overlays/ingress-nginx
     targetRevision: feat-kubernetes-toolkit
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: external-dns
+    namespace: ingress-nginx
   syncPolicy:
     automated:
       prune: true

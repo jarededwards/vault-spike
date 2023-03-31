@@ -3,10 +3,10 @@ kind: Kustomization
 namespace: external-dns
 
 resources:
-  - github.com:kubefirst/manifests.git/kubernetes-toolkit/argo-wait/overlays/ingress-nginx?ref=feat-kubernetes-toolkit
+- github.com:kubefirst/manifests.git/kubernetes-toolkit/argo-wait/base?ref=feat-kubernetes-toolkit
 
-patchesStrategicMerge:
-  - job.yaml
+patches:
+- path: job.yaml
 
 generatorOptions:
   disableNameSuffixHash: true

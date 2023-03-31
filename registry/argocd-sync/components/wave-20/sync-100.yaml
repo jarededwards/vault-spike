@@ -4,7 +4,8 @@ metadata:
   name: sync-100-wave-20
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "100"
+    argocd.argoproj.io/hook: PreSync #! as next test move this to a presync hook on wave 20
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
     spec:
@@ -17,6 +18,6 @@ spec:
         - -c
         - |
           echo sync wave 100
-          sleep 10
+          sleep 999
       restartPolicy: Never
   backoffLimit: 1

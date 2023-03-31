@@ -1,23 +1,23 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: wait-ingress-nginx
+  name: wait-external-dns-deployments
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: '20'
-    # argocd.argoproj.io/hook: PostSync
-    # argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    # argocd.argoproj.io/sync-wave: '20'
+    argocd.argoproj.io/hook: PreSync #! as next test move this to a presync hook on wave 20
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
   finalizers:
     - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
     repoURL: 'https://github.com/kubefirst/manifests'
-    path: kubernetes-toolkit/argo-wait/overlays/ingress-nginx
+    path: kubernetes-toolkit/argo-wait/overlays/external-dns
     targetRevision: feat-kubernetes-toolkit
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: ingress-nginx
+    namespace: external-dns
   syncPolicy:
     automated:
       prune: true

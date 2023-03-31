@@ -4,7 +4,8 @@ metadata:
   name: sync-100-wave-10
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "100"
+    argocd.argoproj.io/hook: PostSync #! as next test move this to a presync hook on wave 20
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
     spec:

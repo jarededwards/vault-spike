@@ -1,22 +1,41 @@
-apiVersion: batch/v1
-kind: Job
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
-  name: sync-30-wave-10
+  name: external-dns
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "30"
+    argocd.argoproj.io/sync-wave: '30'
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
-  template:
-    spec:
-      serviceAccountName: argocd-server
-      containers:
-      - name: atlantis-wait
-        image: sverrirab/sleep
-        command:
-        - /bin/sh
-        - -c
-        - |
-          echo "sync wave 30"
-          sleep 20
-      restartPolicy: Never
-  backoffLimit: 1
+  project: default
+  source:
+    repoURL: https://kubernetes-sigs.github.io/external-dns
+    targetRevision: 1.12.1
+    helm:
+      releaseName: external-dns
+      values: |
+        serviceAccount:
+          create: true
+          name: external-dns
+        provider: civo
+        sources:
+        - ingress
+        domainFilters:
+        - kubesecond.de
+        env:
+        - name: CIVO_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: civo-creds
+              key: civo-token
+    chart: external-dns
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: external-dns
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

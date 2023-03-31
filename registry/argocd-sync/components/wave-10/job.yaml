@@ -2,16 +2,11 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: kubernetes-toolkit
-  annotations:
-    argocd.argoproj.io/sync-wave: '20'
 spec:
   template:
     spec:
-      serviceAccountName: kubernetes-toolkit
       containers:
         - name: kubernetes-toolkit
-          image: kubefirst/kubernetes-toolkit
-          imagePullPolicy: Always
           args:
             [
               'wait-for',
@@ -21,4 +16,3 @@ spec:
               '--label',
               'app.kubernetes.io/name=external-dns',
             ]
-      restartPolicy: OnFailure

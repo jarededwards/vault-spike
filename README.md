@@ -13,3 +13,7 @@ milestone 2:
 we removed the job that ran first and slept 10 seconds to start a sync wave because it proved to be useless.
 we also removed `PostSync` hooks completely and relied only on sync waves 10,20,100
 the final job in a sync wave seems to be what is holding up subsequent sync waves
+
+milestone 3:
+using raw manifests from the kubernetes-toolkit upstream to halt applications from moving forward.
+we can successfully hold sync waves with these final jobs

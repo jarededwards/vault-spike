@@ -17,6 +17,6 @@ spec:
         - -c
         - |
           echo sync wave 1
-          sleep 1
+          sleep 10
       restartPolicy: Never
   backoffLimit: 1

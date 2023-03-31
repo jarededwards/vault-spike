@@ -1,22 +1,23 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: sync-100-wave-10
+  name: presync
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: '100'
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
     spec:
       serviceAccountName: argocd-server
       containers:
-      - name: atlantis-wait
+      - name: wait
         image: sverrirab/sleep
         command:
         - /bin/sh
         - -c
         - |
-          echo sync wave 100
-          sleep 10
+          echo presync
+          sleep 30
       restartPolicy: Never
   backoffLimit: 1

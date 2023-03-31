@@ -7,8 +7,6 @@ metadata:
     argocd.argoproj.io/sync-wave: '20'
     argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
 spec:
   template:
     spec:

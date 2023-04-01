@@ -17,7 +17,7 @@ spec:
         rootPassword: feedkraystars
         persistence:
           enabled: true
-          # existingClaim: minio-pv-claim
+          existingClaim: minio-pv-claim
         resources:
           requests:
             memory: 500Mi

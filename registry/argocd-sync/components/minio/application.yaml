@@ -17,7 +17,10 @@ spec:
         rootPassword: feedkraystars
         persistence:
           enabled: true
-          existingClaim: minio-pv-claim
+          existingClaim: local-path-pvc
+          storageClass: "local-path"
+          accessMode: ReadWriteOnce
+          size: 512Mi
         resources:
           requests:
             memory: 500Mi

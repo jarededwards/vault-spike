@@ -6,7 +6,7 @@ metadata:
   labels:
     type: local
   annotations:
-    argocd.argoproj.io/sync-wave: '0'
+    argocd.argoproj.io/sync-wave: '10'
 spec:
   storageClassName: manual
   capacity:
@@ -22,7 +22,7 @@ metadata:
   name: minio-pv-claim
   namespace: minio
   annotations:
-    argocd.argoproj.io/sync-wave: '0'
+    argocd.argoproj.io/sync-wave: '10'
 spec:
   storageClassName: manual
   accessModes:

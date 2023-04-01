@@ -1,0 +1,22 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sleep-wave-10
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  template:
+    spec:
+      serviceAccountName: argocd-server
+      containers:
+      - name: wait
+        image: sverrirab/sleep
+        command:
+        - /bin/sh
+        - -c
+        - |
+          echo sleeping to allow pvc to provision
+          sleep 10
+      restartPolicy: Never
+  backoffLimit: 1

@@ -47,11 +47,7 @@ spec:
       containers:
       - args:
         - wait-for
-        - deployment
-        - --namespace
-        - minio
-        - --label
-        - app.kubernetes.io/instance=minio
+        - minio-buckets
         image: kubefirst/kubernetes-toolkit:0.0.1
         imagePullPolicy: Always
         name: kubernetes-toolkit
